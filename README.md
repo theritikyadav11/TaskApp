@@ -62,7 +62,7 @@ Each priority level is visually represented with distinct colors for quick ident
 
 ## 🎥 Project Demo
 
-[![Watch the demo](./screenshots/p1.PNG)](https://www.loom.com/share/53ee47a1f97b4acbad615f33eed35287?sid=e3bec0b8-6861-4a9e-8fda-6899d49866ef)
+[![Watch the demo](./screenshots/p1.jpg)](https://www.loom.com/share/53ee47a1f97b4acbad615f33eed35287?sid=e3bec0b8-6861-4a9e-8fda-6899d49866ef)
 
 ---
 
