@@ -62,7 +62,7 @@ Each priority level is visually represented with distinct colors for quick ident
 
 ## 🎥 Project Demo
 
-📺 **Demo Video:** [Watch the demo](./Project-Recording.mp4)
+📺 **Demo Video:** [Watch the demo](./E:\My-Projects\MagnetBrains\Project-Recording.mp4)
 
 <video src="./Project-Recording.mp4" controls width="600"></video>
 
