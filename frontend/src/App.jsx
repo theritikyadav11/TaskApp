@@ -18,7 +18,6 @@ import PriorityManagement from "./pages/user/PriorityManagement";
 export default function App() {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Landing />} />
@@ -30,7 +29,7 @@ export default function App() {
         <Route path="/admin/users" element={<UsersPage />} />
         <Route path="/admin/tasks" element={<TasksPage />} />
 
-        {/* User routes (same structure as admin) */}
+        {/* User routes */}
         <Route path="/user/" element={<UserDashboard />} />
         <Route path="/user/tasks" element={<TasksManagement />} />
         <Route path="/user/priority" element={<PriorityManagement />} />

@@ -20,7 +20,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 
-// Error handling middleware for catching async errors
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).json({

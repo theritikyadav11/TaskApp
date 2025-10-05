@@ -5,17 +5,14 @@ import authMiddleware from "../middleware/auth.js";
 
 const router = express.Router();
 
-// GET /api/users (admin only, role=user only)
 router.get("/", authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== "admin") {
       return res.status(403).json({ message: "Access denied" });
     }
 
-    // fetch only users with role=user
     const users = await User.find({ role: "user" }).select("-password");
 
-    // count tasks per user
     const usersWithTasks = await Promise.all(
       users.map(async (u) => {
         const taskCount = await Task.countDocuments({ assignedTo: u._id });
@@ -29,7 +26,6 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-// GET /api/users/:id (fetch user + tasks)
 router.get("/:id", authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== "admin") {
@@ -47,10 +43,6 @@ router.get("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * POST /api/users
- * Create a new user
- */
 router.post("/", authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== "admin") {
@@ -66,10 +58,6 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * DELETE /api/users/:id
- * Delete a user
- */
 router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== "admin") {
@@ -85,10 +73,6 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * POST /api/users/:id/assign
- * Assign a task to a user
- */
 router.post("/:id/assign", authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== "admin") {
@@ -101,14 +85,12 @@ router.post("/:id/assign", authMiddleware, async (req, res) => {
     let task;
 
     if (taskId) {
-      // existing flow: assign existing task
       task = await Task.findById(taskId);
       if (!task) return res.status(404).json({ message: "Task not found" });
       task.assignedTo = userId;
       if (dueDate) task.dueDate = dueDate;
       await task.save();
     } else {
-      // new flow: create a new task
       task = new Task({
         title,
         description,
@@ -118,7 +100,6 @@ router.post("/:id/assign", authMiddleware, async (req, res) => {
       await task.save();
     }
 
-    // also push task ref to user's task list (if you keep tasks in user)
     await User.findByIdAndUpdate(userId, {
       $push: { tasks: task._id },
     });

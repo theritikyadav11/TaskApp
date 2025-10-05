@@ -10,8 +10,6 @@ router.post("/", auth, async (req, res) => {
   try {
     const { title, description, dueDate, priority, assignedTo, status } =
       req.body;
-
-    // Extra: log before creating
     console.log("Creating task with title:", title);
 
     const assignedUser = assignedTo || req.user._id;
@@ -95,7 +93,6 @@ router.put("/:id", auth, async (req, res) => {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).json({ message: "Not found" });
 
-    // safe check for createdBy
     const isOwner = task.createdBy && task.createdBy.equals(req.user._id);
 
     if (req.user.role !== "user" && !isOwner) {
