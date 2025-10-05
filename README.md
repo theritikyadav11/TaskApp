@@ -64,7 +64,7 @@ Each priority level is visually represented with distinct colors for quick ident
 
 📺 **Demo Video:** [Watch the demo](./Project-Recording.mp4)
 
-<video src="./Project-Recording.mp4" controls width="600"></video>
+<video src="https://www.loom.com/share/53ee47a1f97b4acbad615f33eed35287?sid=e3bec0b8-6861-4a9e-8fda-6899d49866ef" controls width="600"></video>
 
 ---
 
